@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+
+<robot
+    name="crane_x7"
+    xmlns:xacro="http://ros.org/wiki/xacro"
+    xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+    xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+    xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface">
+
+  <!-- Include the CRANE X7 generator macro -->
+  <xacro:include filename="$(find crane_x7_description)/urdf/crane_x7.xacro"/>
+
+  <!-- Include the transmission files -->
+  <xacro:include filename="$(find crane_x7_simulation)/urdf/crane_x7_transmissions.xacro"/>
+  <xacro:include filename="$(find crane_x7_simulation)/urdf/crane_x7_wide_two_finger_gripper_transmissions.xacro"/>
+
+  <!-- Link to provide the location reference for the arm -->
+  <link name="base_link"/>
+
+  <!-- Instantiate a CRANE X7 -->
+  <crane_x7 parent="base_link"
+              base_color="red"
+              shoulder_color="white"
+              shoulder_joint_cover_color="red"
+              upper_arm_upper_color="white"
+              upper_arm_lower_color="white"
+              elbow_joint_cover_color="red"
+              lower_arm_upper_color="white"
+              lower_arm_lower_color="white"
+              wrist_color="white"
+              hand_color="red"
+              joints_vlimit="4.81710873"
+              shoulder_llimit="-2.97132"
+              shoulder_ulimit="2.97132"
+              logos_definition="$(find crane_x7_description)/urdf/crane_x7_rt_logos.xacro">
+    <origin xyz="0 0 0"/>
+  </crane_x7>
+
+  <!-- Instantiate arm transmissions -->
+  <crane_x7_transmissions
+    shoulder_pan_joint_name="${CRANE_X7_SHOULDER_PAN_JOINT_NAME}"
+    shoulder_tilt_joint_name="${CRANE_X7_SHOULDER_TILT_JOINT_NAME}"
+    upper_arm_twist_joint_name="${CRANE_X7_UPPER_ARM_TWIST_JOINT_NAME}"
+    upper_arm_rotate_joint_name="${CRANE_X7_UPPER_ARM_ROTATE_JOINT_NAME}"
+    lower_arm_twist_joint_name="${CRANE_X7_LOWER_ARM_TWIST_JOINT_NAME}"
+    lower_arm_rotate_joint_name="${CRANE_X7_LOWER_ARM_ROTATE_JOINT_NAME}"
+    wrist_joint_name="${CRANE_X7_WRIST_JOINT_NAME}"/>
+
+  <!-- Instantiate gripper transmissions -->
+  <crane_x7_wide_two_finger_gripper_transmissions
+    finger_a_joint_name="${CRANE_X7_WTFG_FINGER_A_JOINT_NAME}"
+    finger_b_joint_name="${CRANE_X7_WTFG_FINGER_B_JOINT_NAME}"/>
+
+  <gazebo>
+    <plugin name="control" filename="libgazebo_ros_control.so"/>
+    <plugin name="joint_state_publisher" filename="libgazebo_ros_joint_state_publisher.so">
+      <jointName>
+        ${CRANE_X7_SHOULDER_PAN_JOINT_NAME,
+        ${CRANE_X7_SHOULDER_TILT_JOINT_NAME,
+        ${CRANE_X7_UPPER_ARM_TWIST_JOINT_NAME,
+        ${CRANE_X7_UPPER_ARM_ROTATE_JOINT_NAME,
+        ${CRANE_X7_LOWER_ARM_TWIST_JOINT_NAME,
+        ${CRANE_X7_LOWER_ARM_ROTATE_JOINT_NAME,
+        ${CRANE_X7_WRIST_JOINT_NAME,
+        ${CRANE_X7_WTFG_FINGER_A_JOINT_NAME,
+        ${CRANE_X7_WTFG_FINGER_B_JOINT_NAME,
+      </jointName>
+    </plugin>
+  </gazebo>
+</robot>

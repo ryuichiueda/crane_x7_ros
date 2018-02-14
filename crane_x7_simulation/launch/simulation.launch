@@ -1,0 +1,48 @@
+<launch>
+  <rosparam
+    file="$(find crane_x7_simulation)/config/crane_x7.yaml"
+    command="load"
+    />
+  <param
+    name="robot_description"
+    command="$(find xacro)/xacro --inorder '$(find crane_x7_simulation)/urdf/simulated_crane_x7.sdf.xacro'"
+    />
+
+  <!-- Start the manipulator's world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch"/>
+
+  <!-- Spawn the manipulator model -->
+  <node
+    name="spawn_urdf"
+    pkg="gazebo_ros"
+    type="spawn_model"
+    args="-param robot_description -urdf -model crane_x7"
+    />
+
+  <!-- Start the robot state publisher -->
+  <node
+    name="robot_state_publisher"
+    pkg="robot_state_publisher"
+    type="robot_state_publisher"
+    />
+
+  <!-- Start the controllers for the arm joints and the gripper
+       This launches controllers that work with the Gazebo ros_control plugin
+       to provide the same interfaces that are provided by the hardware
+       controller nodes in the hardware version. -->
+  <node
+    name="controller_spawner"
+    pkg="controller_manager"
+    type="spawner"
+    args="crane_x7 crane_x7_fingers"
+    />
+
+  <!-- Start the gripper command handler -->
+  <!--<node name="crane_x7_gripper"-->
+    <!--pkg="crane_x7_gripper"-->
+    <!--type="gripper_controller.py"-->
+    <!--output="screen"-->
+    <!-->-->
+    <!--<param name="servo_namespace" value="/crane_x7_finger"/>-->
+  <!--</node>-->
+</launch>

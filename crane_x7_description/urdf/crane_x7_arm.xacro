@@ -5,8 +5,6 @@
   <xacro:property name="SCALE_MM" value="0.001"/>
   <xacro:property name="SCALE_CM" value="0.01"/>
 
-  <xacro:property name="BASE_FIXED_PART_HEIGHT" value="0.005"/>
-
   <!-- Macro for the standard CRANE X7 configuration -->
   <xacro:macro name="crane_x7_arm"
       params="parent
@@ -83,6 +81,20 @@
         attached_link="${end_effector_base_link}">
       <origin xyz="0 0 0" rpy="0 0 0"/>
     </crane_x7_wrist>
+
+    <!-- Export joint names using CRANE X7 default configuration part names -->
+    <xacro:property name="CRANE_X7_SHOULDER_PAN_JOINT_NAME"
+        value="${CRANE_X7_BASE_PAN_JOINT_NAME}"/>
+    <xacro:property name="CRANE_X7_SHOULDER_TILT_JOINT_NAME"
+        value="${CRANE_X7_BASE_TILT_JOINT_NAME}"/>
+    <xacro:property name="CRANE_X7_UPPER_ARM_TWIST_JOINT_NAME"
+        value="${CRANE_X7_ROTLINK_1_TWIST_JOINT_NAME}"/>
+    <xacro:property name="CRANE_X7_UPPER_ARM_ROTATE_JOINT_NAME"
+        value="${CRANE_X7_ROTLINK_1_ROTATE_JOINT_NAME}"/>
+    <xacro:property name="CRANE_X7_LOWER_ARM_TWIST_JOINT_NAME"
+        value="${CRANE_X7_ROTLINK_2_TWIST_JOINT_NAME}"/>
+    <xacro:property name="CRANE_X7_LOWER_ARM_ROTATE_JOINT_NAME"
+        value="${CRANE_X7_ROTLINK_2_ROTATE_JOINT_NAME}"/>
   </xacro:macro>
 
 
@@ -208,7 +220,8 @@
     </link>
 
     <!-- Pan joint of the shoulder -->
-    <joint name="${name}_pan_joint" type="revolute">
+    <xacro:property name="CRANE_X7_BASE_PAN_JOINT_NAME" value="${name}_pan_joint"/>
+    <joint name="${CRANE_X7_BASE_PAN_JOINT_NAME}" type="revolute">
       <origin xyz="0 0 ${BASE_FIXED_PART_JOINT_Z}" rpy="0 0 0"/>
       <axis xyz="0 0 1"/>
       <limit effort="0.5" velocity="${vlimit}" lower="${llimit}" upper="${ulimit}"/>
@@ -249,7 +262,8 @@
     </link>
 
     <!-- Tilt joint of the shoulder -->
-    <joint name="${name}_tilt_joint" type="revolute">
+    <xacro:property name="CRANE_X7_BASE_TILT_JOINT_NAME" value="${name}_tilt_joint"/>
+    <joint name="${CRANE_X7_BASE_TILT_JOINT_NAME}" type="revolute">
       <origin xyz="0 0 ${BASE_REVOLUTE_PART_JOINT_Z}" rpy="0 0 0"/>
       <axis xyz="0 1 0"/>
       <limit effort="0.5" velocity="${vlimit}" lower="${llimit}" upper="${ulimit}"/>
@@ -357,7 +371,8 @@
       params="parent name color twist_vlimit twist_llimit twist_ulimit
         rotate_vlimit rotate_llimit rotate_ulimit attached_link">
     <!-- Joint for twisting around long axis -->
-    <joint name="${name}_twist_joint" type="revolute">
+    <xacro:property name="CRANE_X7_ROTLINK_1_TWIST_JOINT_NAME" value="${name}_twist_joint"/>
+    <joint name="${CRANE_X7_ROTLINK_1_TWIST_JOINT_NAME}" type="revolute">
       <origin xyz="0 0 ${TYPE_1_FIXED_PART_JOINT_Z}" rpy="0 0 0"/>
       <axis xyz="0 0 1"/>
       <limit effort="0.5"
@@ -396,7 +411,8 @@
     </link>
 
     <!-- Joint for rotating the attached part -->
-    <joint name="${name}_rotate_joint" type="revolute">
+    <xacro:property name="CRANE_X7_ROTLINK_1_ROTATE_JOINT_NAME" value="${name}_rotate_joint"/>
+    <joint name="${CRANE_X7_ROTLINK_1_ROTATE_JOINT_NAME}" type="revolute">
       <origin xyz="0 0 ${TYPE_1_REVOLUTE_PART_JOINT_Z}" rpy="0 0 0"/>
       <axis xyz="0 -1 0"/>
       <limit effort="0.5"
@@ -439,7 +455,8 @@
       </inertial>
     </link>
 
-    <joint name="${name}_joint" type="revolute">
+    <xacro:property name="CRANE_X7_ROTLINK_2_TWIST_JOINT_NAME" value="${name}_joint"/>
+    <joint name="${CRANE_X7_ROTLINK_2_TWIST_JOINT_NAME}" type="revolute">
       <origin xyz="0 0 ${TYPE_2_FIXED_PART_JOINT_Z}" rpy="0 0 0"/>
       <axis xyz="0 0 1"/>
       <limit effort="0.5" velocity="${vlimit}" lower="${llimit}" upper="${ulimit}"/>
@@ -540,7 +557,8 @@
       </inertial>
     </link>
 
-    <joint name="${name}_joint" type="revolute">
+    <xacro:property name="CRANE_X7_ROTLINK_2_ROTATE_JOINT_NAME" value="${name}_joint"/>
+    <joint name="${CRANE_X7_ROTLINK_2_ROTATE_JOINT_NAME}" type="revolute">
       <origin xyz="0 0 ${TYPE_2_REVOLUTE_PART_JOINT_Z}" rpy="0 0 0"/>
       <axis xyz="0 1 0"/>
       <limit effort="0.5" velocity="${vlimit}" lower="${llimit}" upper="${ulimit}"/>
@@ -585,7 +603,8 @@
       </inertial>
     </link>
 
-    <joint name="${name}_joint" type="revolute">
+    <xacro:property name="CRANE_X7_WRIST_JOINT_NAME" value="${name}_joint"/>
+    <joint name="${CRANE_X7_WRIST_JOINT_NAME}" type="revolute">
       <origin xyz="0 0 ${WRIST_JOINT_Z}" rpy="0 0 0"/>
       <axis xyz="0 0 1"/>
       <limit effort="0.5" velocity="${vlimit}" lower="${llimit}" upper="${ulimit}"/>

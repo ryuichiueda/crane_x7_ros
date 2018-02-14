@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <!-- Macro for the standard CRANE X7 configuration -->
+  <xacro:macro name="crane_x7_transmissions"
+      params="shoulder_pan_joint_name
+              shoulder_tilt_joint_name
+              upper_arm_twist_joint_name
+              upper_arm_rotate_joint_name
+              lower_arm_twist_joint_name
+              lower_arm_rotate_joint_name
+              wrist_joint_name">
+    <crane_x7_base_transmissions
+      pan_joint_name="${shoulder_pan_joint_name}"
+      tilt_joint_name="${shoulder_tilt_joint_name}"/>
+    <crane_x7_type_1_rotating_link_transmissions
+      twist_joint_name="${upper_arm_twist_joint_name}"
+      rotate_joint_name="${upper_arm_rotate_joint_name}"/>
+    <crane_x7_type_2_rotating_link_transmissions
+      twist_joint_name="${lower_arm_twist_joint_name}"
+      rotate_joint_name="${lower_arm_rotate_joint_name}"/>
+    <crane_x7_wrist_transmissions
+      joint_name="${wrist_joint_name}"/>
+  </xacro:macro>
+
+
+  <!-- Composite parts -->
+
+  <!-- Base pan/tilt-like joint -->
+  <xacro:macro name="crane_x7_base_transmissions"
+      params="pan_joint_name tilt_joint_name">
+    <crane_x7_base_fixed_part_transmission joint_name="${pan_joint_name}"/>
+    <crane_x7_base_revolute_part_transmission joint_name="${tilt_joint_name}"/>
+  </xacro:macro>
+
+  <!-- Long link with twist capability -->
+  <xacro:macro name="crane_x7_type_1_rotating_link_transmissions"
+      params="twist_joint_name rotate_joint_name">
+    <crane_x7_rotating_link_1_twist_transmission joint_name="${twist_joint_name}"/>
+    <crane_x7_rotating_link_1_rotate_transmission joint_name="${rotate_joint_name}"/>
+  </xacro:macro>
+
+  <!-- Arm-to-wrist link with twist capability -->
+  <xacro:macro name="crane_x7_type_2_rotating_link_transmissions"
+      params="twist_joint_name rotate_joint_name">
+    <crane_x7_rotating_link_2_twist_transmission joint_name="${twist_joint_name}"/>
+    <crane_x7_rotating_link_2_rotate_transmission joint_name="${rotate_joint_name}"/>
+  </xacro:macro>
+
+
+  <!-- Individual parts -->
+
+  <!-- Mountable part of base -->
+  <xacro:macro name="crane_x7_base_fixed_part_transmission" params="joint_name">
+    <crane_x7_generic_transmission joint_name="${joint_name}"/>
+  </xacro:macro>
+
+  <!-- Rotated part of base -->
+  <xacro:macro name="crane_x7_base_revolute_part_transmission" params="joint_name">
+    <crane_x7_generic_transmission joint_name="${joint_name}"/>
+  </xacro:macro>
+
+  <!-- "Fixed" part of long twistable link -->
+  <xacro:macro name="crane_x7_rotating_link_1_twist_transmission" params="joint_name">
+    <crane_x7_generic_transmission joint_name="${joint_name}"/>
+  </xacro:macro>
+
+  <!-- Rotating part of long twistable link -->
+  <xacro:macro name="crane_x7_rotating_link_1_rotate_transmission" params="joint_name">
+    <crane_x7_generic_transmission joint_name="${joint_name}"/>
+  </xacro:macro>
+
+  <!-- "Fixed" part of arm-to-wrist twistable link -->
+  <xacro:macro name="crane_x7_rotating_link_2_twist_transmission" params="joint_name">
+    <crane_x7_generic_transmission joint_name="${joint_name}"/>
+  </xacro:macro>
+
+  <!-- Rotating part of arm-to-wrist twistable link -->
+  <xacro:macro name="crane_x7_rotating_link_2_rotate_transmission" params="joint_name">
+    <crane_x7_generic_transmission joint_name="${joint_name}"/>
+  </xacro:macro>
+
+  <!-- Wrist (end effector attachment link) -->
+  <xacro:macro name="crane_x7_wrist_transmissions" params="joint_name">
+    <crane_x7_generic_transmission joint_name="${joint_name}"/>
+  </xacro:macro>
+
+  <!-- Generic transmission for use by joints that are not unique -->
+  <xacro:macro name="crane_x7_generic_transmissions" params="joint_name">
+    <transmission name="${joint_name}_transmission">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${joint_name}">
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${joint_name}_actuator">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+  </xacro:macro>
+</robot>

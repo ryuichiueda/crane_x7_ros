@@ -1,0 +1,16 @@
+crane_plus:
+  type: "position_controllers/JointTrajectoryController"
+  joints:
+    - crane_x7_shoulder_pan_joint
+    - crane_x7_shoulder_tilt_joint
+    - crane_x7_upper_arm_revolute_part_twist_joint
+    - crane_x7_upper_arm_revolute_part_rotate_joint
+    - crane_x7_lower_arm_fixed_part_joint
+    - crane_x7_lower_arm_revolute_part_joint
+    - crane_x7_wrist_joint
+crane_plus_fingers:
+  type: "effort_controllers/JointPositionController"
+  joints:
+    - crane_plus_finger_a_joint
+    - crane_plus_finger_b_joint
+  pid: {p: 100.0, i: 0.01, d: 10.0}
