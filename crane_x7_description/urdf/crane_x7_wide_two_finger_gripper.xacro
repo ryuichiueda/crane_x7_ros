@@ -33,7 +33,9 @@
       </inertial>
     </link>
 
-    <xacro:property name="CRANE_X7_WTFG_FINGER_A_JOINT_NAME" value="${name}_finger_a_joint"/>
+    <xacro:property name="CRANE_X7_WTFG_FINGER_A_JOINT_NAME"
+      value="${name}_finger_a_joint"
+      scope="global"/>
     <joint name="${CRANE_X7_WTFG_FINGER_A_JOINT_NAME}" type="revolute">
       <origin xyz="-0.012 0.0 0.024" rpy="0 0 0"/>
       <axis xyz="0 -1 0"/>
@@ -69,8 +71,10 @@
       </inertial>
     </link>
 
-    <xacro:property name="CRANE_X7_WTFG_FINGER_B_JOINT_NAME" value="${name}_finger_b_joint"/>
-    <joint name="${CRANE_X7_WTFG_FINGER_A_JOINT_NAME}" type="revolute">
+    <xacro:property name="CRANE_X7_WTFG_FINGER_B_JOINT_NAME"
+      value="${name}_finger_b_joint"
+      scope="global"/>
+    <joint name="${CRANE_X7_WTFG_FINGER_B_JOINT_NAME}" type="revolute">
       <origin xyz="0.012 0.0 0.024" rpy="0 0 0"/>
       <axis xyz="0 1 0"/>
       <limit effort="0.5" velocity="${vlimit}" lower="0.0046" upper="1.62601"/>

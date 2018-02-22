@@ -86,7 +86,7 @@
   </xacro:macro>
 
   <!-- Generic transmission for use by joints that are not unique -->
-  <xacro:macro name="crane_x7_generic_transmissions" params="joint_name">
+  <xacro:macro name="crane_x7_generic_transmission" params="joint_name">
     <transmission name="${joint_name}_transmission">
       <type>transmission_interface/SimpleTransmission</type>
       <joint name="${joint_name}">

@@ -84,17 +84,23 @@
 
     <!-- Export joint names using CRANE X7 default configuration part names -->
     <xacro:property name="CRANE_X7_SHOULDER_PAN_JOINT_NAME"
-        value="${CRANE_X7_BASE_PAN_JOINT_NAME}"/>
+        value="${CRANE_X7_BASE_PAN_JOINT_NAME}"
+        scope="global"/>
     <xacro:property name="CRANE_X7_SHOULDER_TILT_JOINT_NAME"
-        value="${CRANE_X7_BASE_TILT_JOINT_NAME}"/>
+        value="${CRANE_X7_BASE_TILT_JOINT_NAME}"
+        scope="global"/>
     <xacro:property name="CRANE_X7_UPPER_ARM_TWIST_JOINT_NAME"
-        value="${CRANE_X7_ROTLINK_1_TWIST_JOINT_NAME}"/>
+        value="${CRANE_X7_ROTLINK_1_TWIST_JOINT_NAME}"
+        scope="global"/>
     <xacro:property name="CRANE_X7_UPPER_ARM_ROTATE_JOINT_NAME"
-        value="${CRANE_X7_ROTLINK_1_ROTATE_JOINT_NAME}"/>
+        value="${CRANE_X7_ROTLINK_1_ROTATE_JOINT_NAME}"
+        scope="global"/>
     <xacro:property name="CRANE_X7_LOWER_ARM_TWIST_JOINT_NAME"
-        value="${CRANE_X7_ROTLINK_2_TWIST_JOINT_NAME}"/>
+        value="${CRANE_X7_ROTLINK_2_TWIST_JOINT_NAME}"
+        scope="global"/>
     <xacro:property name="CRANE_X7_LOWER_ARM_ROTATE_JOINT_NAME"
-        value="${CRANE_X7_ROTLINK_2_ROTATE_JOINT_NAME}"/>
+        value="${CRANE_X7_ROTLINK_2_ROTATE_JOINT_NAME}"
+        scope="global"/>
   </xacro:macro>
 
 
@@ -220,7 +226,7 @@
     </link>
 
     <!-- Pan joint of the shoulder -->
-    <xacro:property name="CRANE_X7_BASE_PAN_JOINT_NAME" value="${name}_pan_joint"/>
+    <xacro:property name="CRANE_X7_BASE_PAN_JOINT_NAME" value="${name}_pan_joint" scope="global"/>
     <joint name="${CRANE_X7_BASE_PAN_JOINT_NAME}" type="revolute">
       <origin xyz="0 0 ${BASE_FIXED_PART_JOINT_Z}" rpy="0 0 0"/>
       <axis xyz="0 0 1"/>
@@ -262,7 +268,7 @@
     </link>
 
     <!-- Tilt joint of the shoulder -->
-    <xacro:property name="CRANE_X7_BASE_TILT_JOINT_NAME" value="${name}_tilt_joint"/>
+    <xacro:property name="CRANE_X7_BASE_TILT_JOINT_NAME" value="${name}_tilt_joint" scope="global"/>
     <joint name="${CRANE_X7_BASE_TILT_JOINT_NAME}" type="revolute">
       <origin xyz="0 0 ${BASE_REVOLUTE_PART_JOINT_Z}" rpy="0 0 0"/>
       <axis xyz="0 1 0"/>
@@ -371,7 +377,7 @@
       params="parent name color twist_vlimit twist_llimit twist_ulimit
         rotate_vlimit rotate_llimit rotate_ulimit attached_link">
     <!-- Joint for twisting around long axis -->
-    <xacro:property name="CRANE_X7_ROTLINK_1_TWIST_JOINT_NAME" value="${name}_twist_joint"/>
+    <xacro:property name="CRANE_X7_ROTLINK_1_TWIST_JOINT_NAME" value="${name}_twist_joint" scope="global"/>
     <joint name="${CRANE_X7_ROTLINK_1_TWIST_JOINT_NAME}" type="revolute">
       <origin xyz="0 0 ${TYPE_1_FIXED_PART_JOINT_Z}" rpy="0 0 0"/>
       <axis xyz="0 0 1"/>
@@ -411,7 +417,7 @@
     </link>
 
     <!-- Joint for rotating the attached part -->
-    <xacro:property name="CRANE_X7_ROTLINK_1_ROTATE_JOINT_NAME" value="${name}_rotate_joint"/>
+    <xacro:property name="CRANE_X7_ROTLINK_1_ROTATE_JOINT_NAME" value="${name}_rotate_joint" scope="global"/>
     <joint name="${CRANE_X7_ROTLINK_1_ROTATE_JOINT_NAME}" type="revolute">
       <origin xyz="0 0 ${TYPE_1_REVOLUTE_PART_JOINT_Z}" rpy="0 0 0"/>
       <axis xyz="0 -1 0"/>
@@ -455,7 +461,7 @@
       </inertial>
     </link>
 
-    <xacro:property name="CRANE_X7_ROTLINK_2_TWIST_JOINT_NAME" value="${name}_joint"/>
+    <xacro:property name="CRANE_X7_ROTLINK_2_TWIST_JOINT_NAME" value="${name}_joint" scope="global"/>
     <joint name="${CRANE_X7_ROTLINK_2_TWIST_JOINT_NAME}" type="revolute">
       <origin xyz="0 0 ${TYPE_2_FIXED_PART_JOINT_Z}" rpy="0 0 0"/>
       <axis xyz="0 0 1"/>
@@ -557,7 +563,7 @@
       </inertial>
     </link>
 
-    <xacro:property name="CRANE_X7_ROTLINK_2_ROTATE_JOINT_NAME" value="${name}_joint"/>
+    <xacro:property name="CRANE_X7_ROTLINK_2_ROTATE_JOINT_NAME" value="${name}_joint" scope="global"/>
     <joint name="${CRANE_X7_ROTLINK_2_ROTATE_JOINT_NAME}" type="revolute">
       <origin xyz="0 0 ${TYPE_2_REVOLUTE_PART_JOINT_Z}" rpy="0 0 0"/>
       <axis xyz="0 1 0"/>
@@ -603,7 +609,7 @@
       </inertial>
     </link>
 
-    <xacro:property name="CRANE_X7_WRIST_JOINT_NAME" value="${name}_joint"/>
+    <xacro:property name="CRANE_X7_WRIST_JOINT_NAME" value="${name}_joint" scope="global"/>
     <joint name="${CRANE_X7_WRIST_JOINT_NAME}" type="revolute">
       <origin xyz="0 0 ${WRIST_JOINT_Z}" rpy="0 0 0"/>
       <axis xyz="0 0 1"/>
