@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
+
 import rospy
 import moveit_commander
 import geometry_msgs.msg
