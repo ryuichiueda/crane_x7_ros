@@ -25,12 +25,12 @@
     -->
 
     <model name="cup1">
-  <pose>0.43 0.35 1.5 0 0 0</pose>
+  <pose>0.28 0.2 1.5 0 0 0</pose>
     <link name="link">
       <inertial>
-        <mass>1.0</mass>
+        <mass>0.01</mass>
         <inertia>
-          <ixx>0.083</ixx>
+		<ixx>0.083</ixx>
           <ixy>0.0</ixy>
           <ixz>0.0</ixz>
           <iyy>0.083</iyy>
@@ -41,7 +41,7 @@
       <collision name="collision">
         <geometry>
           <cylinder>
-		  <radius>0.0275</radius>
+		  <radius>0.024</radius>
 		  <length>0.06</length>
           </cylinder>
         </geometry>
@@ -49,7 +49,7 @@
       <visual name="visual">
         <geometry>
           <cylinder>
-		  <radius>0.0275</radius>
+		  <radius>0.024</radius>
 		  <length>0.06</length>
           </cylinder>
         </geometry>
@@ -62,7 +62,7 @@
   <pose>0.33 0.4 1.5 0 0 0</pose>
     <link name="link">
       <inertial>
-        <mass>1.0</mass>
+        <mass>0.03</mass>
         <inertia>
           <ixx>0.083</ixx>
           <ixy>0.0</ixy>
@@ -337,7 +337,7 @@
 
 
     <model name="cup10">
-  <pose>0.43 -0.35 1.5 0 0 0</pose>
+  <pose>0.28 -0.2 1.5 0 0 0</pose>
     <link name="link">
       <inertial>
         <mass>1.0</mass>
