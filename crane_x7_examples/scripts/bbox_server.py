@@ -10,7 +10,6 @@ def DarknetBboxCallback(darknet_bboxs):
     bbox_name = bbox.Class
     if bbox_name == 'paperplate':
         print(bbox.Class)
-        hamburger.test()
 
 if __name__ == '__main__':
     try:
