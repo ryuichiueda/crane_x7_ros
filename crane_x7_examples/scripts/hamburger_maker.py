@@ -117,8 +117,8 @@ class Hamburger(QMainWindow):
         food_stock.buns_1(1)
         food_stock.lettuce(1)
         food_stock.beef(1)
-        food_stock.tomato(1)
-    #    food_stock.onion(1)
+#        food_stock.tomato(1)
+        food_stock.onion(1)
         food_stock.buns_2(1)
 
 
@@ -153,7 +153,7 @@ class Cheeseburger(QMainWindow):
         food_stock.buns_1(1)
         food_stock.lettuce(1)
         food_stock.cheese_beef(1)
-        food_stock.tomato(1)
+#        food_stock.tomato(1)
         food_stock.onion(1)
         food_stock.buns_2(1)
             
@@ -190,7 +190,7 @@ class Specialburger(QMainWindow):
         food_stock.lettuce(1)
         food_stock.cheese_beef(1)
         food_stock.beef(1)
-        food_stock.tomato(1)
+#        food_stock.tomato(1)
         food_stock.onion(1)
         food_stock.buns_2(1)
  
@@ -219,8 +219,8 @@ class CREATE(QMainWindow):
         self.upper_3 = QCheckBox('Cheese on beef', self)
         layout.addWidget(self.upper_3)
 
-        self.upper_4 = QCheckBox('tomato', self)
-        layout.addWidget(self.upper_4)
+#        self.upper_4 = QCheckBox('tomato', self)
+#        layout.addWidget(self.upper_4)
 
         self.upper_5 = QCheckBox('onion', self)
         layout.addWidget(self.upper_5)
@@ -246,8 +246,8 @@ class CREATE(QMainWindow):
             food_stock.beef(1)
         if(self.upper_3.isChecked()):
             food_stock.cheese_beef(1)
-        if(self.upper_4.isChecked()):
-            food_stock.tomato(1)
+#        if(self.upper_4.isChecked()):
+#            food_stock.tomato(1)
         if(self.upper_5.isChecked()):
             food_stock.onion(1)
         food_stock.buns_2(1)
@@ -301,7 +301,7 @@ class Food_Stock:
             target_pose.position.x = pos_x
             target_pose.position.y = pos_y
             target_pose.position.z = pos_z
-            q = quaternion_from_euler(-math.pi/2.0, math.pi/2.0, 0.0)  # 上方から掴みに行く場合
+            q = quaternion_from_euler(-math.pi/2.0, math.pi/2.0, 0.0)  
             target_pose.orientation.x = q[0]
             target_pose.orientation.y = q[1]
             target_pose.orientation.z = q[2]
@@ -314,7 +314,7 @@ class Food_Stock:
             target_pose.position.x = pos_x
             target_pose.position.y = pos_y
             target_pose.position.z = pos_z
-            q = quaternion_from_euler(euler_x, euler_y, euler_z)  # 上方から掴みに行く場合
+            q = quaternion_from_euler(euler_x, euler_y, euler_z)  
             target_pose.orientation.x = q[0]
             target_pose.orientation.y = q[1]
             target_pose.orientation.z = q[2]
@@ -331,35 +331,12 @@ class Food_Stock:
         #ハンドを開く
         move_gripper(1.3)
 
-#        if(total_beef == 2):
-             #掴む準備をする-----2
-#            arm.set_named_target("home2")
-#            arm.go()
-#            move_arm(0.0, 0.20, 0.25)
-#            move_arm(0.242, 0.24, 0.15)
-        
-            #掴みに行く
-#            arm.set_max_velocity_scaling_factor(0.1)
-#            move_arm(0.242, 0.3, 0.315)
-        
-            #ハンドを閉じる
-#            move_gripper(0.01)
-            
-            #持ち上げる
-#            move_arm(0.242, 0.1, 0.35)
-#            move_arm(0.0, 0.20, 0.25)
-        
-            #homeに戻る
-#            arm.set_named_target("home")
-#            arm.go()
- 
 
         if(total_beef == 1):
-             #掴む準備をする-----2
+            #掴む準備をする
+            # SRDFに定義されている"home2"の姿勢にする
             arm.set_named_target("home2")
             arm.go()
-#             move_arm(0.0, 0.20, 0.25)
-#            move_arm(0.15, -0.2, 0.15)
         
             #掴みに行く
             arm.set_max_velocity_scaling_factor(0.1)
@@ -370,7 +347,6 @@ class Food_Stock:
             
             #持ち上げる
             move_arm(0.147, 0.1, 0.35)
-#            move_arm(0.0, 0.20, 0.25)
         
             #homeに戻る
             arm.set_named_target("home")
@@ -378,11 +354,10 @@ class Food_Stock:
                 
 
         elif(total_beef == 0):
-             #掴む準備をする-----10
+            #掴む準備をする
+            # SRDFに定義されている"home2"の姿勢にする
             arm.set_named_target("home2")
             arm.go()
-#            move_arm(0.0, 0.20, 0.25)
-#            move_arm(0.2, -0.4, 0.15)
         
             #掴みに行く
             arm.set_max_velocity_scaling_factor(0.1)
@@ -393,7 +368,6 @@ class Food_Stock:
             
             #持ち上げる
             move_arm(0.052, 0.1, 0.35)
-#            move_arm(0.0, 0.20, 0.25)
         
             #homeに戻る
             arm.set_named_target("home")
@@ -401,9 +375,6 @@ class Food_Stock:
      
         #下ろす
         rotate_hand(0.30, 0.0, 0.168, 0.0, math.pi/2.0, 0.0)
-    
-        #ハンドを開く
-#        move_gripper(0.5)
     
         #少しだけハンドを持ち上げる
         rotate_hand(0.25, 0.0, 0.14, 0.0, math.pi/2.0, 0.0)
@@ -418,8 +389,6 @@ class Food_Stock:
         arm.set_named_target("home")
         arm.go()
     
-    
-    
         print("done")
 
 
@@ -433,8 +402,6 @@ class Food_Stock:
             print("error!! Lack of buns")
             return
         
-        
-#        rospy.init_node("crane_x7_pick_and_place_controller")
         robot = moveit_commander.RobotCommander()
         arm = moveit_commander.MoveGroupCommander("arm")
         arm.set_max_velocity_scaling_factor(0.5)
@@ -469,7 +436,7 @@ class Food_Stock:
             target_pose.position.x = pos_x
             target_pose.position.y = pos_y
             target_pose.position.z = pos_z
-            q = quaternion_from_euler(math.pi, 0, 0)  # 上方から掴みに行く場合
+            q = quaternion_from_euler(math.pi, 0, 0)  
             target_pose.orientation.x = q[0]
             target_pose.orientation.y = q[1]
             target_pose.orientation.z = q[2]
@@ -482,7 +449,7 @@ class Food_Stock:
             target_pose.position.x = pos_x
             target_pose.position.y = pos_y
             target_pose.position.z = pos_z
-            q = quaternion_from_euler(euler_x, euler_y, euler_z)  # 上方から掴みに行く場合
+            q = quaternion_from_euler(euler_x, euler_y, euler_z)  
             target_pose.orientation.x = q[0]
             target_pose.orientation.y = q[1]
             target_pose.orientation.z = q[2]
@@ -500,11 +467,10 @@ class Food_Stock:
         move_gripper(1.3)
 
         if(total_buns_1 == 1 or total_buns_1 == 0):
-             #掴む準備をする-----2
+            #掴む準備をする
+            # SRDFに定義されている"home5"の姿勢にする
             arm.set_named_target("home5")
             arm.go()
-#            move_arm(0.0, 0.20, 0.25)
-#            move_arm(0.15, -0.2, 0.15)
         
             #掴みに行く
             arm.set_max_velocity_scaling_factor(0.1)
@@ -514,7 +480,6 @@ class Food_Stock:
             move_gripper(0.01)
             
             #持ち上げる
-#            move_arm(0.035, 0.305, 0.25)
             move_arm(0.035, -0.305, 0.32)
         
             #homeに戻る
@@ -522,57 +487,8 @@ class Food_Stock:
             arm.go()
  
 
-#        elif(total_buns_1 == 0):
-             #掴む準備をする-----2
-#            arm.set_named_target("home5")
-#            arm.go()
-#            move_arm(0.0, 0.20, 0.25)
-#            move_arm(0.15, -0.2, 0.15)
-        
-            #掴みに行く
-#            arm.set_max_velocity_scaling_factor(0.1)
-#            move_arm(0.14, -0.305, 0.19)
-        
-            #ハンドを閉じる
-#            move_gripper(0.01)
-            
-            #持ち上げる
-#            move_arm(0.14, -0.305, 0.32)
-#            move_arm(0.0, 0.20, 0.25)
-        
-            #homeに戻る
-#            arm.set_named_target("home")
-#            arm.go()
-                
-
-#        elif(total_buns_1 == 0):
-             #掴む準備をする-----10
-#            arm.set_named_target("home2")
-#            arm.go()
-#            move_arm(0.0, 0.20, 0.25)
-#            move_arm(0.2, -0.4, 0.15)
-        
-            #掴みに行く
-#            arm.set_max_velocity_scaling_factor(0.1)
-#            move_arm(0.052, 0.34, 0.25)
-        
-            #ハンドを閉じる
-#            move_gripper(0.04)
-            
-            #持ち上げる
-#            move_arm(0.052, 0.24, 0.25)
-#            move_arm(0.0, 0.20, 0.25)
-        
-            #homeに戻る
-#            arm.set_named_target("home")
-#            arm.go()
-     
- 
         #下ろす
         rotate_hand(0.30, 0.0, 0.168, 0.0, math.pi/2.0, 0.0)
-    
-        #ハンドを開く
-#        move_gripper(0.5)
     
         #少しだけハンドを持ち上げる
         rotate_hand(0.25, 0.0, 0.14, 0.0, math.pi/2.0, 0.0)
@@ -583,8 +499,6 @@ class Food_Stock:
         #少しだけハンドを持ち上げる
         rotate_hand(0.15, 0.0, 0.19, 0.0, math.pi/2.0, 0.0)
     
-
-
         print("done")
 
 
@@ -598,8 +512,6 @@ class Food_Stock:
             print("error!! Lack of buns")
             return
         
-        
-#        rospy.init_node("crane_x7_pick_and_place_controller")
         robot = moveit_commander.RobotCommander()
         arm = moveit_commander.MoveGroupCommander("arm")
         arm.set_max_velocity_scaling_factor(0.5)
@@ -634,7 +546,7 @@ class Food_Stock:
             target_pose.position.x = pos_x
             target_pose.position.y = pos_y
             target_pose.position.z = pos_z
-            q = quaternion_from_euler(math.pi, 0, 0)  # 上方から掴みに行く場合
+            q = quaternion_from_euler(math.pi, 0, 0)  
             target_pose.orientation.x = q[0]
             target_pose.orientation.y = q[1]
             target_pose.orientation.z = q[2]
@@ -647,7 +559,7 @@ class Food_Stock:
             target_pose.position.x = pos_x
             target_pose.position.y = pos_y
             target_pose.position.z = pos_z
-            q = quaternion_from_euler(euler_x, euler_y, euler_z)  # 上方から掴みに行く場合
+            q = quaternion_from_euler(euler_x, euler_y, euler_z)  
             target_pose.orientation.x = q[0]
             target_pose.orientation.y = q[1]
             target_pose.orientation.z = q[2]
@@ -664,35 +576,11 @@ class Food_Stock:
         #ハンドを開く
         move_gripper(1.3)
 
-#        if(total_buns_2 == 1):
-             #掴む準備をする-----2
-#            arm.set_named_target("home5")
-#            arm.go()
-#            move_arm(0.0, 0.20, 0.25)
-#            move_arm(0.15, -0.2, 0.15)
-        
-            #掴みに行く
-#            arm.set_max_velocity_scaling_factor(0.1)
-#            move_arm(0.035, -0.305, 0.19)
-        
-            #ハンドを閉じる
-#            move_gripper(0.01)
-            
-            #持ち上げる
-#            move_arm(0.035, 0.305, 0.25)
-#            move_arm(0.035, -0.305, 0.32)
-        
-            #homeに戻る
-#            arm.set_named_target("home")
-#            arm.go()
- 
-
         if(total_buns_2 == 0 or total_buns_2 == 1):
-             #掴む準備をする-----2
+            #掴む準備をする
+            # SRDFに定義されている"home5"の姿勢にする
             arm.set_named_target("home5")
             arm.go()
-#            move_arm(0.0, 0.20, 0.25)
-#            move_arm(0.15, -0.2, 0.15)
         
             #掴みに行く
             arm.set_max_velocity_scaling_factor(0.1)
@@ -703,41 +591,14 @@ class Food_Stock:
             
             #持ち上げる
             move_arm(0.14, -0.305, 0.32)
-#            move_arm(0.0, 0.20, 0.25)
         
             #homeに戻る
             arm.set_named_target("home")
             arm.go()
                 
 
-#        elif(total_buns_2 == 0):
-             #掴む準備をする-----10
-#            arm.set_named_target("home2")
-#            arm.go()
-#            move_arm(0.0, 0.20, 0.25)
-#            move_arm(0.2, -0.4, 0.15)
-        
-            #掴みに行く
-#            arm.set_max_velocity_scaling_factor(0.1)
-#            move_arm(0.052, 0.34, 0.25)
-        
-            #ハンドを閉じる
-#            move_gripper(0.04)
-            
-            #持ち上げる
-#            move_arm(0.052, 0.24, 0.25)
-#            move_arm(0.0, 0.20, 0.25)
-        
-            #homeに戻る
-#            arm.set_named_target("home")
-#            arm.go()
-     
- 
         #下ろす
         rotate_hand(0.30, 0.0, 0.168, 0.0, math.pi/2.0, 0.0)
-    
-        #ハンドを開く
-#        move_gripper(0.5)
     
         #少しだけハンドを持ち上げる
         rotate_hand(0.25, 0.0, 0.14, 0.0, math.pi/2.0, 0.0)
@@ -748,8 +609,6 @@ class Food_Stock:
         #少しだけハンドを持ち上げる
         rotate_hand(0.15, 0.0, 0.19, 0.0, math.pi/2.0, 0.0)
     
-
-
         print("done")
 
 
@@ -765,8 +624,6 @@ class Food_Stock:
             print("error!! Lack of cheese_beef")
             return
         
-        
-#        rospy.init_node("crane_x7_pick_and_place_controller")
         robot = moveit_commander.RobotCommander()
         arm = moveit_commander.MoveGroupCommander("arm")
         arm.set_max_velocity_scaling_factor(0.5)
@@ -801,7 +658,7 @@ class Food_Stock:
             target_pose.position.x = pos_x
             target_pose.position.y = pos_y
             target_pose.position.z = pos_z
-            q = quaternion_from_euler(-math.pi/2.0, math.pi/2.0, 0.0)  # 上方から掴みに行く場合
+            q = quaternion_from_euler(-math.pi/2.0, math.pi/2.0, 0.0)  
             target_pose.orientation.x = q[0]
             target_pose.orientation.y = q[1]
             target_pose.orientation.z = q[2]
@@ -814,7 +671,7 @@ class Food_Stock:
             target_pose.position.x = pos_x
             target_pose.position.y = pos_y
             target_pose.position.z = pos_z
-            q = quaternion_from_euler(euler_x, euler_y, euler_z)  # 上方から掴みに行く場合
+            q = quaternion_from_euler(euler_x, euler_y, euler_z)  
             target_pose.orientation.x = q[0]
             target_pose.orientation.y = q[1]
             target_pose.orientation.z = q[2]
@@ -832,11 +689,10 @@ class Food_Stock:
         move_gripper(1.3)
 
         if(total_cheese_beef == 1):
-             #掴む準備をする-----2
+            #掴む準備をする
+            # SRDFに定義されている"home2"の姿勢にする
             arm.set_named_target("home2")
             arm.go()
-#            move_arm(0.0, 0.20, 0.25)
-#            move_arm(0.15, -0.2, 0.15)
         
             #掴みに行く
             arm.set_max_velocity_scaling_factor(0.1)
@@ -847,7 +703,6 @@ class Food_Stock:
             
             #持ち上げる
             move_arm(-0.053, 0.25, 0.35)
-#            move_arm(0.0, 0.20, 0.25)
         
             #homeに戻る
             arm.set_named_target("home")
@@ -855,11 +710,10 @@ class Food_Stock:
  
 
         elif(total_cheese_beef == 0):
-             #掴む準備をする-----2
+            #掴む準備をする
+            # SRDFに定義されている"home2"の姿勢にする
             arm.set_named_target("home2")
             arm.go()
-#            move_arm(0.0, 0.20, 0.25)
-#            move_arm(0.15, -0.2, 0.15)
         
             #掴みに行く
             arm.set_max_velocity_scaling_factor(0.1)
@@ -870,35 +724,12 @@ class Food_Stock:
             
             #持ち上げる
             move_arm(-0.148, 0.25, 0.4)
-#            move_arm(0.0, 0.20, 0.25)
         
             #homeに戻る
             arm.set_named_target("home")
             arm.go()
                 
 
-#        elif(total_cheese_beef == 0):
-             #掴む準備をする-----10
-#            arm.set_named_target("home2")
-#            arm.go()
-#            move_arm(0.0, 0.20, 0.25)
-#            move_arm(0.2, -0.4, 0.15)
-        
-            #掴みに行く
-#            arm.set_max_velocity_scaling_factor(0.1)
-#            move_arm(-0.243, 0.3, 0.315)
-        
-            #ハンドを閉じる
-#            move_gripper(0.04)
-            
-            #持ち上げる
-#            move_arm(-0.243, 0.2, 0.4)
-#            move_arm(0.0, 0.20, 0.25)
-        
-            #homeに戻る
-#            arm.set_named_target("home")
-#            arm.go()
-     
         #下ろす
         rotate_hand(0.30, 0.0, 0.168, 0.0, math.pi/2.0, 0.0)
         
@@ -915,8 +746,6 @@ class Food_Stock:
         arm.set_named_target("home")
         arm.go()
     
-    
-    
         print("done")
 
    
@@ -931,7 +760,6 @@ class Food_Stock:
             return
         
         
- #       rospy.init_node("crane_x7_pick_and_place_controller")
         robot = moveit_commander.RobotCommander()
         arm = moveit_commander.MoveGroupCommander("arm")
         arm.set_max_velocity_scaling_factor(0.5)
@@ -966,7 +794,7 @@ class Food_Stock:
             target_pose.position.x = pos_x
             target_pose.position.y = pos_y
             target_pose.position.z = pos_z
-            q = quaternion_from_euler(-math.pi/2.0, math.pi/2.0, 0.0)  # 上方から掴みに行く場合
+            q = quaternion_from_euler(-math.pi/2.0, math.pi/2.0, 0.0)  
             target_pose.orientation.x = q[0]
             target_pose.orientation.y = q[1]
             target_pose.orientation.z = q[2]
@@ -979,7 +807,7 @@ class Food_Stock:
             target_pose.position.x = pos_x
             target_pose.position.y = pos_y
             target_pose.position.z = pos_z
-            q = quaternion_from_euler(euler_x, euler_y, euler_z)  # 上方から掴みに行く場合
+            q = quaternion_from_euler(euler_x, euler_y, euler_z)  
             target_pose.orientation.x = q[0]
             target_pose.orientation.y = q[1]
             target_pose.orientation.z = q[2]
@@ -996,35 +824,11 @@ class Food_Stock:
         #ハンドを開く
         move_gripper(1.3)
 
-#        if(total_tomato == 2):
-             #掴む準備をする-----2
-#            arm.set_named_target("home2")
-#            arm.go()
-#            move_arm(0.0, 0.20, 0.15)
-#            move_arm(0.15, -0.2, 0.15)
-        
-            #掴みに行く
-#            arm.set_max_velocity_scaling_factor(0.1)
-#            move_arm(0.242, 0.3, 0.215)
-        
-            #ハンドを閉じる
-#            move_gripper(0.03)
-            
-            #持ち上げる
-#            move_arm(0.242, 0.24, 0.15)
-#            move_arm(0.0, 0.20, 0.25)
-        
-            #homeに戻る
-#            arm.set_named_target("home")
-#            arm.go()
- 
-
         if(total_tomato == 1):
-             #掴む準備をする-----2
+            #掴む準備をする
+            # SRDFに定義されている"home2"の姿勢にする
             arm.set_named_target("home2")
             arm.go()
-#            move_arm(0.0, 0.20, 0.15)
-#            move_arm(0.15, -0.2, 0.15)
         
             #掴みに行く
             arm.set_max_velocity_scaling_factor(0.1)
@@ -1035,7 +839,6 @@ class Food_Stock:
             
             #持ち上げる
             move_arm(0.147, 0.1, 0.25)
-#            move_arm(0.0, 0.20, 0.25)
         
             #homeに戻る
             arm.set_named_target("home")
@@ -1043,11 +846,10 @@ class Food_Stock:
                 
 
         elif(total_tomato == 0):
-             #掴む準備をする-----10
+            #掴む準備をする
+            # SRDFに定義されている"home2"の姿勢にする
             arm.set_named_target("home2")
             arm.go()
-#            move_arm(0.0, 0.20, 0.15)
-#            move_arm(0.2, -0.4, 0.15)
         
             #掴みに行く
             arm.set_max_velocity_scaling_factor(0.1)
@@ -1058,7 +860,6 @@ class Food_Stock:
             
             #持ち上げる
             move_arm(0.052, 0.1, 0.25)
-#            move_arm(0.0, 0.20, 0.25)
         
             #homeに戻る
             arm.set_named_target("home")
@@ -1080,8 +881,6 @@ class Food_Stock:
         arm.set_named_target("home")
         arm.go()
     
-    
-    
         print("done")
 
    
@@ -1095,8 +894,6 @@ class Food_Stock:
             print("error!! Lack of lettuce")
             return
         
-        
-#        rospy.init_node("crane_x7_pick_and_place_controller")
         robot = moveit_commander.RobotCommander()
         arm = moveit_commander.MoveGroupCommander("arm")
         arm.set_max_velocity_scaling_factor(0.5)
@@ -1131,7 +928,7 @@ class Food_Stock:
             target_pose.position.x = pos_x
             target_pose.position.y = pos_y
             target_pose.position.z = pos_z
-            q = quaternion_from_euler(-math.pi/2.0, math.pi/2.0, 0.0)  # 上方から掴みに行く場合
+            q = quaternion_from_euler(-math.pi/2.0, math.pi/2.0, 0.0)  
             target_pose.orientation.x = q[0]
             target_pose.orientation.y = q[1]
             target_pose.orientation.z = q[2]
@@ -1144,7 +941,7 @@ class Food_Stock:
             target_pose.position.x = pos_x
             target_pose.position.y = pos_y
             target_pose.position.z = pos_z
-            q = quaternion_from_euler(euler_x, euler_y, euler_z)  # 上方から掴みに行く場合
+            q = quaternion_from_euler(euler_x, euler_y, euler_z)  
             target_pose.orientation.x = q[0]
             target_pose.orientation.y = q[1]
             target_pose.orientation.z = q[2]
@@ -1162,11 +959,10 @@ class Food_Stock:
         move_gripper(1.3)
 
         if(total_lettuce == 1):
-             #掴む準備をする-----2
+            #掴む準備をする
+            # SRDFに定義されている"home2"の姿勢にする
             arm.set_named_target("home2")
             arm.go()
-#            move_arm(0.0, 0.20, 0.15)
-#            move_arm(0.15, -0.2, 0.15)
         
             #掴みに行く
             arm.set_max_velocity_scaling_factor(0.1)
@@ -1177,7 +973,6 @@ class Food_Stock:
             
             #持ち上げる
             move_arm(-0.053, 0.15, 0.25)
-#            move_arm(0.0, 0.20, 0.25)
         
             #homeに戻る
             arm.set_named_target("home")
@@ -1185,11 +980,10 @@ class Food_Stock:
  
 
         elif(total_lettuce == 0):
-             #掴む準備をする-----2
+            #掴む準備をする
+            # SRDFに定義されている"home2"の姿勢にする
             arm.set_named_target("home2")
             arm.go()
-#            move_arm(0.0, 0.20, 0.15)
-#            move_arm(0.15, -0.2, 0.15)
         
             #掴みに行く
             arm.set_max_velocity_scaling_factor(0.1)
@@ -1200,35 +994,12 @@ class Food_Stock:
             
             #持ち上げる
             move_arm(-0.148, 0.15, 0.25)
-#            move_arm(0.0, 0.20, 0.25)
         
             #homeに戻る
             arm.set_named_target("home")
             arm.go()
                 
 
-#        elif(total_lettuce == 0):
-             #掴む準備をする-----10
-#            arm.set_named_target("home2")
-#            arm.go()
-#            move_arm(0.0, 0.20, 0.15)
-#            move_arm(0.2, -0.4, 0.15)
-        
-            #掴みに行く
-#            arm.set_max_velocity_scaling_factor(0.1)
-#            move_arm(-0.243, 0.3, 0.215)
-        
-            #ハンドを閉じる
-#            move_gripper(0.04)
-            
-            #持ち上げる
-#            move_arm(-0.243, 0.15, 0.25)
-#            move_arm(0.0, 0.20, 0.25)
-        
-            #homeに戻る
-#            arm.set_named_target("home")
-#            arm.go()
-     
         #下ろす
         rotate_hand(0.29, 0.0, 0.18, 0.0, math.pi, 0.0)
 
@@ -1245,8 +1016,6 @@ class Food_Stock:
         arm.set_named_target("home")
         arm.go()
     
-    
-    
         print("done")
 
 
@@ -1260,8 +1029,6 @@ class Food_Stock:
             print("error!! Lack of onion")
             return
         
-        
- #       rospy.init_node("crane_x7_pick_and_place_controller")
         robot = moveit_commander.RobotCommander()
         arm = moveit_commander.MoveGroupCommander("arm")
         arm.set_max_velocity_scaling_factor(0.5)
@@ -1296,7 +1063,7 @@ class Food_Stock:
             target_pose.position.x = pos_x
             target_pose.position.y = pos_y
             target_pose.position.z = pos_z
-            q = quaternion_from_euler(-math.pi/2.0, 0.0, 0.0)  # 上方から掴みに行く場合
+            q = quaternion_from_euler(-math.pi/2.0, 0.0, 0.0)  
             target_pose.orientation.x = q[0]
             target_pose.orientation.y = q[1]
             target_pose.orientation.z = q[2]
@@ -1309,7 +1076,7 @@ class Food_Stock:
             target_pose.position.x = pos_x
             target_pose.position.y = pos_y
             target_pose.position.z = pos_z
-            q = quaternion_from_euler(euler_x, euler_y, euler_z)  # 上方から掴みに行く場合
+            q = quaternion_from_euler(euler_x, euler_y, euler_z)  
             target_pose.orientation.x = q[0]
             target_pose.orientation.y = q[1]
             target_pose.orientation.z = q[2]
@@ -1326,71 +1093,46 @@ class Food_Stock:
         #ハンドを開く
         move_gripper(1.3)
 
-#        if(total_onion == 2):
-             #掴む準備をする-----2
-#            arm.set_named_target("home4")
-#            arm.go()
-#            move_arm(0.0, 0.20, 0.15)
-#            move_arm(0.242, 0.25, 0.15)
-        
-            #掴みに行く
-#            arm.set_max_velocity_scaling_factor(0.1)
-#            move_arm(0.242, 0.35, 0.055)
-        
-            #ハンドを閉じる
-#            move_gripper(0.29)
-            
-            #持ち上げる
-#            move_arm(0.242, 0.25, 0.055)
-#            move_arm(0.0, 0.20, 0.25)
-        
-            #homeに戻る
-#            arm.set_named_target("home3")
-#            arm.go()
- 
-
         if(total_onion == 1):
-             #掴む準備をする-----2
+            #掴む準備をする
+            # SRDFに定義されている"home4"の姿勢にする
             arm.set_named_target("home4")
             arm.go()
-#            move_arm(0.0, 0.20, 0.15)
-            move_arm(0.147, 0.25, 0.15)
+            move_arm(0.147, 0.3, 0.15)
         
             #掴みに行く
             arm.set_max_velocity_scaling_factor(0.1)
-            move_arm(0.147, 0.35, 0.055)
+            move_arm(0.147, 0.4, 0.055)
         
             #ハンドを閉じる
             move_gripper(0.29)
             
             #持ち上げる
             move_arm(0.147, 0.25, 0.055)
-#            move_arm(0.0, 0.20, 0.25)
         
-            #homeに戻る
+            # SRDFに定義されている"home3"の姿勢にする
             arm.set_named_target("home3")
             arm.go()
                 
 
         elif(total_onion == 0):
-             #掴む準備をする-----10
+            #掴む準備をする
+            # SRDFに定義されている"home4"の姿勢にする
             arm.set_named_target("home4")
             arm.go()
-#            move_arm(0.0, 0.20, 0.15)
-            move_arm(0.052, 0.25, 0.15)
+            move_arm(0.052, 0.3, 0.15)
         
             #掴みに行く
             arm.set_max_velocity_scaling_factor(0.1)
-            move_arm(0.052, 0.35, 0.055)
+            move_arm(0.052, 0.4, 0.055)
         
             #ハンドを閉じる
             move_gripper(0.29)
             
             #持ち上げる
             move_arm(0.052, 0.25, 0.055)
-#            move_arm(0.0, 0.20, 0.25)
         
-            #homeに戻る
+            # SRDFに定義されている"home3"の姿勢にする
             arm.set_named_target("home3")
             arm.go()
      
@@ -1400,26 +1142,26 @@ class Food_Stock:
 
         #ハンドを回転
         arm.set_max_velocity_scaling_factor(0.1)
-        rotate_hand(0.30, -0.05, 0.25, -math.pi/2.0, math.pi/3.0, -math.pi/2.0)
-        rotate_hand(0.30, -0.05, 0.2, -math.pi/2.0, math.pi/1.2, -math.pi/2.0)
+        rotate_hand(0.28, 0.03, 0.25, -math.pi/2.0, math.pi/3.0, -math.pi/2.0)
+        rotate_hand(0.28, 0.03, 0.2, -math.pi/2.0, math.pi/1.2, -math.pi/2.0)
 
         arm.set_max_velocity_scaling_factor(0.5)
         
         #少しだけハンドを持ち上げる
-        rotate_hand(0.30, -0.05, 0.25, -math.pi/2.0, math.pi/1.2, -math.pi/2.0)
-        rotate_hand(0.30, -0.05, 0.2, -math.pi/2.0, math.pi/1.2, -math.pi/2.0)
-        rotate_hand(0.30, -0.05, 0.25, -math.pi/2.0, math.pi/1.2, -math.pi/2.0)
-        rotate_hand(0.30, -0.05, 0.2, -math.pi/2.0, math.pi/1.2, -math.pi/2.0)
+        rotate_hand(0.28, 0.03, 0.25, -math.pi/2.0, math.pi/1.2, -math.pi/2.0)
+        rotate_hand(0.28, 0.03, 0.2, -math.pi/2.0, math.pi/1.2, -math.pi/2.0)
+        rotate_hand(0.28, 0.03, 0.25, -math.pi/2.0, math.pi/1.2, -math.pi/2.0)
+        rotate_hand(0.28, 0.03, 0.2, -math.pi/2.0, math.pi/1.2, -math.pi/2.0)
 
+        # SRDFに定義されている"home3"の姿勢にする
         arm.set_named_target("home3")
         arm.go()
-        rotate_hand(-0.1, -0.3, 0.3, math.pi/2.0, math.pi, 0.0)
+        rotate_hand(-0.2, -0.3, 0.3, math.pi/2.0, math.pi, 0.0)
         move_gripper(1.0)
         move_gripper(0.29)
         #homeに戻る
         arm.set_named_target("home")
         arm.go()
-   
     
         print("done")
 
@@ -1430,13 +1172,6 @@ if __name__ == '__main__':
 
     try:
         if not rospy.is_shutdown():
-#            app = QApplication(sys.argv)
-#            ex = Example()
-#            ex.show()
-#            sys.exit(app.exec_())
-
-
-#            rospy.init_node('bbox_server', anonymous=True)
             rospy.init_node("crane_x7_make_hamburger")
             rospy.Subscriber('/darknet_ros/bounding_boxes', BoundingBoxes, DarknetBboxCallback)
             rospy.spin()
